@@ -1,0 +1,3 @@
+﻿  TaylorSeries.cpp
+C:\Users\thomp\source\repos\Udemy C++\DataStructureAndAlgorithms\Recursion\TaylorSeries\TaylorSeries\TaylorSeries.cpp(18,45): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  TaylorSeries.vcxproj -> C:\Users\thomp\source\repos\Udemy C++\DataStructureAndAlgorithms\Recursion\TaylorSeries\Debug\TaylorSeries.exe
