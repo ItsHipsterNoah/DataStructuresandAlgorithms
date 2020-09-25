@@ -1,4 +1,2 @@
 ﻿  ArrayADT.cpp
-C:\Users\thomp\source\repos\Udemy C++\DataStructureAndAlgorithms\ArrayADT\ArrayADT\ArrayADT\ArrayADT.cpp(75,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\thomp\source\repos\Udemy C++\DataStructureAndAlgorithms\ArrayADT\ArrayADT\ArrayADT\ArrayADT.cpp(91,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   ArrayADT.vcxproj -> C:\Users\thomp\source\repos\Udemy C++\DataStructureAndAlgorithms\ArrayADT\ArrayADT\Debug\ArrayADT.exe
