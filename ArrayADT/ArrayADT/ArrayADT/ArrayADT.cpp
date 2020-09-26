@@ -1,4 +1,4 @@
-#include "Array.h"
+#include "Array.cpp"
 
 
 int main()
@@ -7,7 +7,7 @@ int main()
     choice = index = x = size = 0;
     std::cout << "Enter the size of the array: ";
     std::cin >> size;
-    Array array{ size };
+    Array<int> array{ size };
     do
     {
         std::cout << std::endl;
@@ -38,7 +38,7 @@ int main()
         case 3:
             std::cout << "Enter an element to search: ";
             std::cin >> x;
-            std::cout << "Found" << x << "at position" << array.Search(x) << std::endl;
+            std::cout << "Found " << x << " at position " << array.Search(x) << std::endl;
             break;
         case 4:
             std::cout << "Sum is: " << array.Sum();
@@ -49,6 +49,6 @@ int main()
             break;
         }
     } while (choice != 6);
-   
-
+    return 0;
 }
+

@@ -1,22 +1,25 @@
 #include "Array.h"
 
-
-Array::Array() 
+template <class T>
+Array<T>::Array() 
 {
 	size = 10;
 	length = 0;
-	A = new int[size];
+	A = new T[size];
 }
 
-Array::Array(int size)
+template <class T>
+Array<T>::Array(int size)
 {
 	this->size = size;
 	this->length = 0;
-	this->A = new int[size];
+	this->A = new T[size];
 }
 
+
 // Display all elements in the array.
-void Array::Display() {
+template <class T>
+void Array<T>::Display() {
 	std::cout << "\nElements are:\n";
 	for (int i = 0; i < length; i++)
 	{
@@ -25,7 +28,8 @@ void Array::Display() {
 }
 
 // Add an element to the end of the array.
-void Array::Append(int x) {
+template <class T>
+void Array<T>::Append(T x) {
 	if (length < size) {
 		A[length++] = x;
 	}
@@ -36,7 +40,8 @@ void Array::Append(int x) {
 }
 
 // Insert value x at the given index.
-void Array::Insert(int index, int x) {
+template <class T>
+void Array<T>::Insert(int index, T x) {
 	if (length == size) {
 		std::cerr << "Array is full, cannot insert" << std::endl;
 		return;
@@ -52,18 +57,20 @@ void Array::Insert(int index, int x) {
 
 // Search for a specified element. Returns -1 if the element
 // cannot be found.
-int Array::Search(int x)
+template <class T>
+T Array<T>::Search(T value)
 {
 	if (IsSorted()) {
-		return BinarySearch(x);
+		return BinarySearch(value);
 	}
 	else {
-		return LinearSearch(x);
+		return LinearSearch(value);
 	}
 }
 
 // Insertion that preserves sorted order.
-void Array::InsertSorted(int x) {
+template <class T>
+void Array<T>::InsertSorted(T x) {
 	if (this->length == size) {
 		std::cerr << "Array is full, cannot insert" << std::endl;
 		return;
@@ -78,8 +85,9 @@ void Array::InsertSorted(int x) {
 }
 
 // Deletes element at specified index.
-int Array::Delete(int index) {
-	int x = 0;
+template <class T>
+T Array<T>::Delete(int index) {
+	T x = 0;
 	if (index >= 0 && index < length) {
 		for (int i = index; i < length; i++) {
 			x = A[i];
@@ -90,8 +98,10 @@ int Array::Delete(int index) {
 	return x;
 }
 
+
 // Performs a linear search in O(n) time.
-int Array::LinearSearch(int x) {
+template <class T>
+int Array<T>::LinearSearch(T x) {
 	for (int i = 0; i < length; i++)
 	{
 		if (A[i] == x) {
@@ -107,7 +117,8 @@ int Array::LinearSearch(int x) {
 }
 
 // Performs a Binary Search in O(logbase2 N).
-int Array::BinarySearch(int key) {
+template <class T>
+int Array<T>::BinarySearch(T key) {
 	int mid{ 0 }, l{ 0 }, h{ length - 1 };
 	while (l <= h) {
 		mid = (int)floor((l + h) / 2);
@@ -125,7 +136,8 @@ int Array::BinarySearch(int key) {
 }
 
 // Performs a binary search recursively.
-int Array::RecursiveBinarySearch(int l, int h, int key) {
+template <class T>
+int Array<T>::RecursiveBinarySearch(int l, int h, T key) {
 	if (l <= h) {
 		int mid = (int)floor((l + h) / 2);
 		if (key == A[mid]) {
@@ -142,7 +154,8 @@ int Array::RecursiveBinarySearch(int l, int h, int key) {
 }
 
 // Gets the value at the specified index.
-int Array::Get(int index) {
+template <class T>
+T Array<T>::Get(int index) {
 	if (index > 0 && index < length) {
 		return A[index];
 	}
@@ -152,9 +165,10 @@ int Array::Get(int index) {
 }
 
 // Returns the largest value in the array.
-int Array::Max() {
+template <class T>
+T Array<T>::Max() {
 	if (length > 0) {
-		int max{ A[0] };
+		T max{ A[0] };
 		for (int i = 1; i < length; i++)
 		{
 			if (A[i] > max) {
@@ -167,7 +181,8 @@ int Array::Max() {
 }
 
 // Returns the smallest value in the array.
-int Array::Min() {
+template <class T>
+T Array<T>::Min() {
 	if (length > 0) {
 		int min{ A[0] };
 		for (int i = 1; i < length; i++)
@@ -182,9 +197,10 @@ int Array::Min() {
 }
 
 // Shifts all the elements in the array leftward.
-void Array::ShiftLeft() {
+template <class T>
+void Array<T>::ShiftLeft() {
 	if (length > 0) {
-		int truncated = A[0];
+		T truncated = A[0];
 		for (int i = 0; i < length; i++)
 		{
 			A[i] = A[i + 1];
@@ -194,9 +210,10 @@ void Array::ShiftLeft() {
 }
 
 // Shifts all the elements in the array rightward.
-void Array::ShiftRight() {
+template <class T>
+void Array<T>::ShiftRight() {
 	if (length > 0) {
-		int truncated = A[length - 1];
+		T truncated = A[length - 1];
 		for (int i = length - 1; i > 0; i--)
 		{
 			A[i] = A[i - 1];
@@ -206,9 +223,10 @@ void Array::ShiftRight() {
 }
 
 // Rotates the array counterclockwise.
-void Array::RotateLeft() {
+template <class T>
+void Array<T>::RotateLeft() {
 	if (length > 0) {
-		int truncated = A[0];
+		T truncated = A[0];
 		for (int i = 0; i < length; i++)
 		{
 			A[i] = A[i + 1];
@@ -218,7 +236,8 @@ void Array::RotateLeft() {
 }
 
 // Rotates the array clockwise.
-void Array::RotateRight() {
+template <class T>
+void Array<T>::RotateRight() {
 	if (length > 0) {
 		int truncated = A[length - 1];
 		for (int i = length - 1; i > 0; i--)
@@ -231,8 +250,9 @@ void Array::RotateRight() {
 
 // Calculates and returns the sum of the elements
 // in the array.
-int Array::Sum() {
-	int sum{ 0 };
+template <class T>
+double Array<T>::Sum() {
+	double sum{ 0 };
 	if (length > 0) {
 		for (int i = 0; i < length; i++)
 		{
@@ -244,7 +264,8 @@ int Array::Sum() {
 }
 
 // Calculates average value of the array.
-double Array::Avg() {
+template <class T>
+double Array<T>::Avg() {
 	double avg{ 0 };
 	if (this->length > 0) {
 		return Sum() / this->length;
@@ -253,9 +274,9 @@ double Array::Avg() {
 }
 
 
-
 // Checks if the array is sorted.
-bool Array::IsSorted() {
+template <class T>
+bool Array<T>::IsSorted() {
 	for (int i = 0; i < length - 1; i++)
 	{
 		if (A[i] > A[i + 1]) {
@@ -267,7 +288,8 @@ bool Array::IsSorted() {
 
 
 // Reverses the array.
-void Array::Reverse() {
+template <class T>
+void Array<T>::Reverse() {
 	for (int i = 0, j = length - 1; i < j; i++, j--) {
 		swap(A[i], A[j]);
 	}
@@ -275,7 +297,8 @@ void Array::Reverse() {
 
 // Places negative numbers on left side of array,
 // and positive numbers on the right.
-void Array::Rearrange() {
+template <class T>
+void Array<T>::Rearrange() {
 	for (int i = 0; i < length; i++) {
 		if (A[i] > 0) {
 			for (int j = length - 1; j != i; j--) {
@@ -289,7 +312,8 @@ void Array::Rearrange() {
 
 // Merges this array with another array,
 // and returns a new array.
-Array* Array::Merge(const Array B) {
+template <class T>
+Array<T>* Array<T>::Merge(const Array<T> B) {
 	Array* C = new Array();
 	C->size = this->size + B.size;
 	C->length = this->  length + B.length;
@@ -312,24 +336,25 @@ Array* Array::Merge(const Array B) {
 }
 
 
-// Udemy solution (DEPRECATED)
-void Array::RearrangeUdemy() {
-	int i{ 0 }, j{ length - 1 };
-	while (i < j) {
-		while (A[i] < 0) {
-			i++;
-		}
-		while (A[i] >= 0) {
-			j--;
-		}
-		if (i < j) {
-			swap(A[i], A[j]);
-		}
-	}
-}
+//// Udemy solution (DEPRECATED)
+//void Array::RearrangeUdemy() {
+//	int i{ 0 }, j{ length - 1 };
+//	while (i < j) {
+//		while (A[i] < 0) {
+//			i++;
+//		}
+//		while (A[i] >= 0) {
+//			j--;
+//		}
+//		if (i < j) {
+//			swap(A[i], A[j]);
+//		}
+//	}
+//}
 
 // Performs UNION on two unsorted array sets.
-Array* Array::Union(const Array B) {
+template <class T>
+Array<T>* Array<T>::Union(const Array<T> B) {
 	if (IsSorted()) {
 		return UnionSorted(B);
 	}
@@ -350,7 +375,8 @@ Array* Array::Union(const Array B) {
 }
 
 // Performs UNION set operation on two sorted array sets.
-Array* Array::UnionSorted(const Array B) {
+template <class T>
+Array<T>* Array<T>::UnionSorted(const Array<T> B) {
 	Array* C = new Array();
 	C->size = this->size + B.size;
 	C->length = this->length + B.length;
@@ -377,7 +403,8 @@ Array* Array::UnionSorted(const Array B) {
 }
 
 // Performs INTERSECT set operation on two arrays
-Array* Array::Intersection(const Array B) {
+template <class T>
+Array<T>* Array<T>::Intersection(const Array<T> B) {
 	Array* C = new Array();
 	C->size = this->size + B.size;
 	C->length = 0;
@@ -395,7 +422,8 @@ Array* Array::Intersection(const Array B) {
 	return C;
 }
 
-Array* Array::Difference(const Array B) {
+template <class T>
+Array<T>* Array<T>::Difference(const Array<T> B) {
 	Array* C = new Array();
 	C->size = this->size + B.size;
 	C->length = 0;
@@ -419,13 +447,15 @@ Array* Array::Difference(const Array B) {
 }
 
 // Internal swap function
-void Array::swap(int& x, int& y) {
+template <class T>
+void Array<T>::swap(T& x, T& y) {
 	int temp = y;
 	y = x;
 	x = temp;
 }
 
-Array::~Array()
+template <class T>
+Array<T>::~Array()
 {
 	if (A) {
 		delete[] A;
